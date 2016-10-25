@@ -1,0 +1,9 @@
+package br.com.interfaces;
+
+import java.util.List;
+
+public interface IArquivo {
+	
+	public List<IString> getPartes();
+	public String getText();
+}

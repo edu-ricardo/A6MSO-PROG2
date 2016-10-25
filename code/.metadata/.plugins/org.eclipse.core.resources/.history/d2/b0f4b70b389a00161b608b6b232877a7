@@ -1,0 +1,6 @@
+package br.com.interfaces;
+
+public interface IArquivo {
+	
+	public String getText();
+}

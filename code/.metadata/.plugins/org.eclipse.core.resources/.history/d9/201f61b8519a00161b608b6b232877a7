@@ -1,0 +1,6 @@
+package br.com.interfaces;
+
+public interface IFactory {
+	public IAplicacao createAplicacao();
+	public IFilaArquivos createFilaArquivos();
+}

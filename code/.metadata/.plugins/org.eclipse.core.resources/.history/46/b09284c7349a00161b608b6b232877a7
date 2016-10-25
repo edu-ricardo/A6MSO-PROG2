@@ -1,0 +1,9 @@
+package br.com.interfaces;
+
+public interface IAplicacao {
+	public IProcessadorArquivos getProcessadorDeArquivos();
+	public void setProcessadorDeArquivos(aProcessadorDeArquivos: IProcessadorArquivos);
+	
+	
+	public void Execute();
+}

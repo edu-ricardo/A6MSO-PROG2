@@ -1,0 +1,10 @@
+package br.com.interfaces;
+
+import java.util.List;
+import java.util.Map;
+
+public interface IArquivo {
+	
+	public Map<String, String> getPartes();
+	public String getText();
+}
