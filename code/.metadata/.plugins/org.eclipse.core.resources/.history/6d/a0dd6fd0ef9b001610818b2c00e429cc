@@ -23,13 +23,7 @@ public class FilaArquivosJava implements IFilaArquivos {
 	public void carregaArquivos(String path) {
 		// TODO Auto-generated method stub
 		File F = new File(path);
-		if(F.isFile()){
-			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
-		}else{
-			for(File fdirs : F.listFiles()){
-				carregaArquivos(fdirs.getPath());
-			}
-		}
+		
 	}
 
 	@Override

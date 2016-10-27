@@ -25,10 +25,6 @@ public class FilaArquivosJava implements IFilaArquivos {
 		File F = new File(path);
 		if(F.isFile()){
 			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
-		}else{
-			for(File fdirs : F.listFiles()){
-				carregaArquivos(fdirs.getPath());
-			}
 		}
 	}
 

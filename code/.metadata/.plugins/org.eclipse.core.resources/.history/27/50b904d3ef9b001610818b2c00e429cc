@@ -24,11 +24,7 @@ public class FilaArquivosJava implements IFilaArquivos {
 		// TODO Auto-generated method stub
 		File F = new File(path);
 		if(F.isFile()){
-			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
-		}else{
-			for(File fdirs : F.listFiles()){
-				carregaArquivos(fdirs.getPath());
-			}
+			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()))
 		}
 	}
 
