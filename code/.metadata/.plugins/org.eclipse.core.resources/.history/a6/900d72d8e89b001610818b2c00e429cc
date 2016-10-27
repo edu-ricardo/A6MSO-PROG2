@@ -1,0 +1,21 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFactoryArquivo;
+import br.com.interfaces.IParte;
+
+public class FactoryArquivoJava implements IFactoryArquivo {
+
+	@Override
+	public IArquivo createArquivo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IParte createParte() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

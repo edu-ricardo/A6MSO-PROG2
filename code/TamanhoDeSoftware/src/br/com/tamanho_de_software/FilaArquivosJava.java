@@ -1,8 +1,11 @@
 package br.com.tamanho_de_software;
 
+import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFactoryArquivo;
 import br.com.interfaces.IFilaArquivos;
 
 //Patterns 
@@ -12,34 +15,40 @@ import br.com.interfaces.IFilaArquivos;
 
 public class FilaArquivosJava implements IFilaArquivos {
 
+	private IFactoryArquivo __factoryArquivo;
+	private List<IArquivo> _listArquivos;
+	private int _index;
+	
 	@Override
 	public void carregaArquivos(String path) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<IArquivo> getArquivos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IArquivo getProximoArquivo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void first() {
-		// TODO Auto-generated method stub
+		File F = new File(path);
 		
 	}
 
 	@Override
-	public boolean eof() {
-		// TODO Auto-generated method stub
-		return false;
+	public List<IArquivo> getArquivos() {
+		return _listArquivos;
 	}
 
+	@Override
+	public IArquivo getArquivo() {		
+		return _listArquivos.get(_index++);
+	}
+
+	@Override
+	public void first() {
+		_index = 0;
+	}
+
+	@Override
+	public boolean eof() {
+		return _index >= _listArquivos.size();
+	}
+
+	public FilaArquivosJava(IFactoryArquivo FactoryArquivo) {
+		_index = -1;
+		_listArquivos = new LinkedList<IArquivo>();
+		__factoryArquivo = FactoryArquivo;
+	}
 }

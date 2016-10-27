@@ -3,6 +3,7 @@ package br.com.tamanho_de_software;
 import br.com.interfaces.IAplicacao;
 import br.com.interfaces.IConsolidadorArquivos;
 import br.com.interfaces.IFactory;
+import br.com.interfaces.IFactoryArquivo;
 import br.com.interfaces.IFilaArquivos;
 import br.com.interfaces.IImpressao;
 import br.com.interfaces.IProcessadorArquivos;
@@ -18,8 +19,8 @@ public class FactoryJava implements IFactory {
 	}
 
 	@Override
-	public IFilaArquivos createFilaArquivos() {
-		return new FilaArquivosJava();
+	public IFilaArquivos createFilaArquivos(IFactoryArquivo FactoryArquivo) {
+		return new FilaArquivosJava(FactoryArquivo);
 	}
 
 	@Override

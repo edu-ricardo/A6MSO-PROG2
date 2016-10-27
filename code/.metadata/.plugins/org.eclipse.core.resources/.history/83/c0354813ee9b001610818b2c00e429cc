@@ -1,0 +1,15 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IFactory;
+import br.com.interfaces.IFactoryArquivo;
+
+public class Main {
+
+	public static void main(String[] args) {
+		IFactoryArquivo __factoryArquivo = new FactoryArquivoJava();
+		IFactory __factory = new FactoryJava();
+		
+		__factory.createFilaArquivos(__factoryArquivo);
+	}
+
+}
