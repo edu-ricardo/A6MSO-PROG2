@@ -38,11 +38,11 @@ public class FactoryJava implements IFactory {
 		// TODO Auto-generated method stub		
 		switch (tipo) {
 		case tiTela:
-			return new ImpressaoTela();
+			
+			break;
 		case tiTxt:
-			return new ImpressaoTxt();
-		default:
-			return null;
+			
+			break;		
 		}
 	}
 

@@ -39,10 +39,10 @@ public class FactoryJava implements IFactory {
 		switch (tipo) {
 		case tiTela:
 			return new ImpressaoTela();
+			break;
 		case tiTxt:
 			return new ImpressaoTxt();
-		default:
-			return null;
+			break;		
 		}
 	}
 

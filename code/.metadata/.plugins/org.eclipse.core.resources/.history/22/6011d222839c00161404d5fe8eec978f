@@ -25,25 +25,20 @@ public class FactoryJava implements IFactory {
 
 	@Override
 	public IProcessadorArquivos createProcessadorArquivos() {
-		return new ProcessadorArquivosJava();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public IConsolidadorArquivos createConsolidadorArquivos() {
-		return new ConsolidadorArquivosJava();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public IImpressao createImpressao(TipoImpressao tipo) {
-		// TODO Auto-generated method stub		
-		switch (tipo) {
-		case tiTela:
-			return new ImpressaoTela();
-		case tiTxt:
-			return new ImpressaoTxt();
-		default:
-			return null;
-		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
