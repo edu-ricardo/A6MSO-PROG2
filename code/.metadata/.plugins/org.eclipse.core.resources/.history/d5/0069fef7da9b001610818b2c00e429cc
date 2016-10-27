@@ -1,0 +1,22 @@
+package br.com.tamanho_de_software;
+
+import java.util.List;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFilaArquivos;
+
+public class FilaArquivosJava implements IFilaArquivos {
+
+	@Override
+	public void carregaArquivos(String path) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<IArquivo> getArquivos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

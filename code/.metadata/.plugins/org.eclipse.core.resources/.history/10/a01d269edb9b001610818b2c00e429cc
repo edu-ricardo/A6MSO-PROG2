@@ -1,0 +1,6 @@
+package br.com.interfaces;
+
+public interface IImpressao {
+	public void setDestino(path: String);
+	public void imprimirDados(IFilaArquivos Arquivos);
+}
