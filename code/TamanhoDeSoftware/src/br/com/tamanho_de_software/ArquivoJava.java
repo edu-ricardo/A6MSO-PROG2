@@ -8,6 +8,7 @@ import br.com.interfaces.IParte;
 public class ArquivoJava implements IArquivo {
 
 	private String path;
+	private String texto;
 	
 	@Override
 	public List<IParte> getPartes() {
@@ -23,6 +24,7 @@ public class ArquivoJava implements IArquivo {
 
 	public ArquivoJava(String path) {
 		// TODO Auto-generated constructor stub
-		this.path = path;
+		this.path = path;		
+		
 	}
 }

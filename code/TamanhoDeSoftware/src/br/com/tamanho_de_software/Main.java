@@ -1,8 +1,17 @@
 package br.com.tamanho_de_software;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
+import br.com.interfaces.IAplicacao;
+import br.com.interfaces.IConsolidadorArquivos;
 import br.com.interfaces.IFactory;
 import br.com.interfaces.IFactoryArquivo;
 import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IImpressao;
+import br.com.interfaces.IProcessadorArquivos;
+import br.com.interfaces.TipoImpressao;
 
 public class Main {
 
@@ -12,10 +21,33 @@ public class Main {
 		String path = null;
 		if (args.length == 1){
 			path = args[0];
+		}else{
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new File("."));
+			chooser.setDialogTitle("Escolher diretório: ");
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			
+			
+			chooser.setAcceptAllFileFilterUsed(false);
+		    //    
+		    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+		      path = chooser.getSelectedFile().getAbsolutePath();
+		    } else {
+		      System.out.println("Selecionar uma pasta ");
+		    }
 		}
 		
-		IFilaArquivos _filaArquivos = __factory.createFilaArquivos(__factoryArquivo);
 		System.out.println(path);
+		
+		IFilaArquivos _filaArquivos = __factory.createFilaArquivos(__factoryArquivo);
+		IProcessadorArquivos _processadorArquivos = __factory.createProcessadorArquivos();
+		IConsolidadorArquivos _consolidaArquivos = __factory.createConsolidadorArquivos();
+		IImpressao _impressaoTela = __factory.createImpressao(TipoImpressao.tiTela);
+		IImpressao _impressaoTxt = __factory.createImpressao(TipoImpressao.tiTxt);
+		
+		IAplicacao _app = __factory.createAplicacao(_filaArquivos, _consolidaArquivos, _processadorArquivos, _impressaoTela, _impressaoTxt);
+		
+		_app.Execute();
 	}
 
 }

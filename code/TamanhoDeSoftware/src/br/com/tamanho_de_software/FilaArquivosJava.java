@@ -1,8 +1,11 @@
 package br.com.tamanho_de_software;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import br.com.interfaces.IArquivo;
 import br.com.interfaces.IFactoryArquivo;
@@ -11,7 +14,7 @@ import br.com.interfaces.IFilaArquivos;
 //Patterns 
 //class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
 //(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
-//loc = [^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:)|else)
+//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
 
 public class FilaArquivosJava implements IFilaArquivos {
 
@@ -23,7 +26,7 @@ public class FilaArquivosJava implements IFilaArquivos {
 	public void carregaArquivos(String path) {
 		// TODO Auto-generated method stub
 		File F = new File(path);
-		if(F.isFile()){
+		if(F.isFile() ){
 			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
 		}else{
 			for(File fdirs : F.listFiles()){
