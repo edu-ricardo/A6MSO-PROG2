@@ -12,7 +12,7 @@ public class ProcessadorArquivosJava implements IProcessadorArquivos {
 		arquivos.first();
 		while (!arquivos.eof()) {
 			IArquivo arq = arquivos.getArquivo();
-			arq.getText();			
+						
 		}
 	}
 
