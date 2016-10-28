@@ -8,7 +8,16 @@
 <fullyQualifiedTypeName name="br.com.interfaces.IImpressao"/>
 <fullyQualifiedTypeName name="br.com.interfaces.TipoImpressao"/>
 <fullyQualifiedTypeName name="br.com.interfaces.IParte"/>
-<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="br.com.tamanho_de_software.ArquivoJava"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="br.com.interfaces.IArquivo"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="br.com.interfaces.IFactoryArquivo"/>
+<fullyQualifiedTypeName name="br.com.tamanho_de_software.FactoryArquivoJava"/>
+<fullyQualifiedTypeName name="br.com.interfaces.IFactory"/>
+<fullyQualifiedTypeName name="br.com.tamanho_de_software.FactoryJava"/>
 <fullyQualifiedTypeName name="br.com.interfaces.IFilaArquivos"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
 <typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.interfaces{IFactory.java[IFactory" modifiers="513" timestamp="1477359018063"/>
-<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.interfaces{IFilaArquivos.java[IFilaArquivos" modifiers="513" timestamp="1477359420096"/>
-<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.tamanho_de_software{FilaArquivosJava.java[FilaArquivosJava" modifiers="1" timestamp="1477359720196"/>
+<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.interfaces{IFilaArquivos.java[IFilaArquivos" modifiers="513" timestamp="1477527627361"/>
+<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.tamanho_de_software{FilaArquivosJava.java[FilaArquivosJava" modifiers="1" timestamp="1477527644175"/>
+<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.interfaces{IFactoryArquivo.java[IFactoryArquivo" modifiers="513" timestamp="1477359069095"/>
+<typeInfo handle="=TamanhoDeSoftware/C:\/Program Files\/Java\/jre1.8.0_72\/lib\/rt.jar&lt;com.sun.corba.se.spi.ior(IdentifiableFactory.class[IdentifiableFactory" modifiers="1537" timestamp="1454367039658"/>
+<typeInfo handle="=TamanhoDeSoftware/src&lt;br.com.interfaces{IArquivo.java[IArquivo" modifiers="513" timestamp="1477357232160"/>
 </typeInfoHistroy>
