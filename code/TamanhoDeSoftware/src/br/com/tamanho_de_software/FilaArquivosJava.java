@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+
 import br.com.interfaces.IArquivo;
 import br.com.interfaces.IFactoryArquivo;
 import br.com.interfaces.IFilaArquivos;
@@ -11,7 +12,7 @@ import br.com.interfaces.IFilaArquivos;
 //Patterns 
 //class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
 //(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
-//loc = [^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:)|else)
+//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
 
 public class FilaArquivosJava implements IFilaArquivos {
 
@@ -23,12 +24,13 @@ public class FilaArquivosJava implements IFilaArquivos {
 	public void carregaArquivos(String path) {
 		// TODO Auto-generated method stub
 		File F = new File(path);
-		if(F.isFile()){
+		if(F.isFile() && F.getName().endsWith(".java")){
 			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
 		}else{
-			for(File fdirs : F.listFiles()){
-				carregaArquivos(fdirs.getPath());
-			}
+			if (F.listFiles().length > 0)
+				for(File fdirs : F.listFiles()){
+					carregaArquivos(fdirs.getAbsolutePath());
+				}
 		}
 	}
 
@@ -56,5 +58,10 @@ public class FilaArquivosJava implements IFilaArquivos {
 		_index = -1;
 		_listArquivos = new LinkedList<IArquivo>();
 		__factoryArquivo = FactoryArquivo;
+	}
+
+	@Override
+	public int getCountFiles() {
+		return _listArquivos.size();
 	}
 }

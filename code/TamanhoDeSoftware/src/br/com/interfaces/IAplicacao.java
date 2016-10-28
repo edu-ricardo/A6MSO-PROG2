@@ -13,5 +13,5 @@ public interface IAplicacao {
 	public IImpressao getImpressoraTela();
 	public void setImpressoraTela(IImpressao aImpressoraTela);	
 	
-	public void Execute();
+	public void Execute(String path);
 }

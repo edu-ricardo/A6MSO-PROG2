@@ -1,0 +1,74 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IAplicacao;
+import br.com.interfaces.IConsolidadorArquivos;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IImpressao;
+import br.com.interfaces.IProcessadorArquivos;
+
+public class Aplicacao implements IAplicacao {
+
+	private IFilaArquivos _filaArquivos;
+	private IProcessadorArquivos _processadorArquivos;
+	private IConsolidadorArquivos _consolidadorArquivos;
+	private IImpressao _impressaoTxt, _impressaoTela;
+	
+	@Override
+	public IProcessadorArquivos getProcessadorDeArquivos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setProcessadorDeArquivos(IProcessadorArquivos aProcessadorDeArquivos) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IConsolidadorArquivos getConsolidadorArquivos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setConsolidadorArquivos(IConsolidadorArquivos aProcessadorDeArquivos) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IImpressao getImpressoraArquivo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setImpressoraArquivo(IImpressao aImpressoraArquivo) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IImpressao getImpressoraTela() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setImpressoraTela(IImpressao aImpressoraTela) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Execute() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public Aplicacao() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

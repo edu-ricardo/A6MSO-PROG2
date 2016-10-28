@@ -7,6 +7,5 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="br.com.tamanho_de_software.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="c:\"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="TamanhoDeSoftware"/>
 </launchConfiguration>
