@@ -1,0 +1,75 @@
+package br.com.tamanho_de_software;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import br.com.interfaces.IParte;
+import br.com.interfaces.PartType;
+
+public class ParteJava implements IParte {
+
+	private int tamanho;
+	private String nome, texto;
+	private PartType partType;
+	private List<IParte> partes;
+	
+	@Override
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	@Override
+	public String getTexto() {
+		return texto;
+	}
+
+	@Override
+	public String getNome() {
+		return nome;
+	}
+
+	@Override
+	public void setTamanho(int Tamanho) {
+		this.tamanho = Tamanho;
+	}
+
+	@Override
+	public void setTexto(String Texto) {
+		this.texto = Texto;
+	}
+
+	@Override
+	public void setNome(String Nome) {
+		this.nome = Nome;
+	}
+
+	public ParteJava(){
+		
+	}
+	
+	public ParteJava(String texto) {
+		this.texto = texto;
+		this.partes = new LinkedList<IParte>();
+	}
+
+	public ParteJava(String nome, texto) {
+		this.texto = texto;
+		this.nome = nome;
+		this.partes = new LinkedList<IParte>();
+	}
+	
+	@Override
+	public PartType getTipoParte() {
+		return partType;
+	}
+
+	@Override
+	public void setTipoParte(PartType tipoParte) {
+		this.partType = tipoParte;		
+	}
+
+	@Override
+	public List<IParte> getPartes() {
+		return partes;
+	}
+}

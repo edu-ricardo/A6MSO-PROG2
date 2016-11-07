@@ -1,0 +1,76 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IAplicacao;
+import br.com.interfaces.IConsolidadorArquivos;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IImpressao;
+import br.com.interfaces.IProcessadorArquivos;
+
+public class Aplicacao implements IAplicacao {
+
+	private IFilaArquivos _filaArquivos;
+	private IProcessadorArquivos _processadorArquivos;
+	private IConsolidadorArquivos _consolidadorArquivos;
+	private IImpressao _impressaoTxt, _impressaoTela;
+	
+	@Override
+	public IProcessadorArquivos getProcessadorDeArquivos() {		
+		return _processadorArquivos;
+	}
+
+	@Override
+	public void setProcessadorDeArquivos(IProcessadorArquivos aProcessadorDeArquivos) {
+		_processadorArquivos = aProcessadorDeArquivos;
+	}
+
+	@Override
+	public IConsolidadorArquivos getConsolidadorArquivos() {
+		return _consolidadorArquivos;
+	}
+
+	@Override
+	public void setConsolidadorArquivos(IConsolidadorArquivos aConsolidadorArquivos) {
+		_consolidadorArquivos = aConsolidadorArquivos;
+	}
+
+	@Override
+	public IImpressao getImpressoraArquivo() {
+		return _impressaoTxt;
+	}
+
+	@Override
+	public void setImpressoraArquivo(IImpressao aImpressoraArquivo) {
+		_impressaoTxt = aImpressoraArquivo;
+	}
+
+	@Override
+	public IImpressao getImpressoraTela() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setImpressoraTela(IImpressao aImpressoraTela) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Execute(String path) {
+		// TODO Auto-generated method stub
+		_filaArquivos.carregaArquivos(path);
+		
+		System.out.println(_filaArquivos.getCountFiles());
+	}
+	
+	public Aplicacao(IFilaArquivos arquivos, IConsolidadorArquivos consolidador,
+			IProcessadorArquivos processador, IImpressao tela, IImpressao impTxt) {
+
+		_filaArquivos = arquivos;
+		_processadorArquivos = processador;
+		_consolidadorArquivos = consolidador;
+		_impressaoTela = tela;
+		_impressaoTxt = impTxt;
+	}
+
+}

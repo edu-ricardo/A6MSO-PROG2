@@ -1,0 +1,46 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IParte;
+
+public class ParteJava implements IParte {
+
+	private int tamanho;
+	private String nome, texto;
+	
+	@Override
+	public int getTamanho() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getTexto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getNome() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTamanho(int Tamanho) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setTexto(String Texto) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setNome(String Nome) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,8 @@
+package br.com.interfaces;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface IProcessadorArquivos {
+	public void processaArquivos(IFilaArquivos arquivos) throws Exception;
+}

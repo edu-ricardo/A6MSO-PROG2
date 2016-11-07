@@ -23,8 +23,8 @@ public class FactoryJava implements IFactory {
 	}
 
 	@Override
-	public IProcessadorArquivos createProcessadorArquivos() {
-		return new ProcessadorArquivosJava();
+	public IProcessadorArquivos createProcessadorArquivos(IFactoryArquivo factArquivo) {
+		return new ProcessadorArquivosJava(factArquivo);
 	}
 
 	@Override

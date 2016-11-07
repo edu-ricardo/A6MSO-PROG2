@@ -1,0 +1,69 @@
+package br.com.tamanho_de_software;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.net.ssl.HandshakeCompletedListener;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IProcessadorArquivos;
+
+//Patterns 
+//class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
+//(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
+//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
+
+public class ProcessadorArquivosJava implements IProcessadorArquivos {
+	private static final String patternClass = "(public|private)\\s+(class|interface|enum)\\s+(\\w+)\\s+((extends\\s+\\w+)|(implements\\s+\\w+( ,\\w+)*))?\\s*\\{";
+	private static final String patternMethods = "(public|protected|private|static|\\s) +[\\w\\<\\>\\[\\]]+\\s+(\\w+) *\\([^\\)]*\\) *(\\{?|[^;])";
+	private static final String patternLoc = "[ ^\\@\\.\\(]([\\w ]*\\s?=?\\s?[\\w\\+ \\<\\>\\(]* ?(\\;|\\)|\\:|{)|else)";
+	
+	private int countClasses(String texto){
+		Pattern p = Pattern.compile(patternClass);
+		Matcher m = p.matcher(texto);		
+		int i = 0;
+		while (m.find()) {
+			i++;
+		}		
+		return i;	
+	}
+
+	private List<String> extractClasses(String texto){
+		Pattern p = Pattern.compile(patternClass);
+		Matcher m = p.matcher(texto);		
+		LinkedList<String> ret = new LinkedList<String>();
+		while (m.find()) {
+			int openBracesCount = 0;
+			int endIndex = 0;
+			for (int i = m.end() - 1; i < texto.length(); i++) {
+				if (texto.charAt(i) == '}' && openBracesCount == 0){
+					endIndex = i;
+					break;
+				}else if(texto.charAt(i) == '}'){
+					openBracesCount--;
+				}else if(texto.charAt(i) == '{'){
+					openBracesCount++;
+				}
+			}
+			ret.add(texto.substring(m.start(), endIndex));
+		}
+		
+		return ret;
+	}
+	
+	@Override
+	public void processaArquivos(IFilaArquivos arquivos) throws FileNotFoundException, IOException {
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();
+			arq.setQtdeClasses(countClasses(arq.getText()));
+			extractClasses(arq.getText());
+		}
+	}
+
+}

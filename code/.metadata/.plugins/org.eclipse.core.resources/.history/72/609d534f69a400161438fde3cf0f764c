@@ -1,0 +1,20 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IImpressao;
+
+public class ImpressaoTxt implements IImpressao {
+	private String path;
+	
+	@Override
+	public void setDestino(String path) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void imprimirDados(IFilaArquivos Arquivos) {
+		
+	}
+
+}

@@ -1,0 +1,6 @@
+package br.com.tamanho_de_software;
+
+public enum PartType {
+	Classe,
+	Metodo
+}

@@ -1,0 +1,44 @@
+package br.com.tamanho_de_software;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IParte;
+
+public class ArquivoJava implements IArquivo {
+
+	private String path;
+	private List<IParte> _partes;
+	
+	@Override
+	public List<IParte> getPartes() {
+		return _partes;
+	}
+
+	@Override
+	public String getText() {
+		File file = new File(path);
+		FileReader reader = null;
+		try {
+			reader = new FileReader(path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		char texto[] = null;
+		try {
+			reader.read(texto);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String(texto);
+	}
+
+	public ArquivoJava(String path) {
+		this.path = path;		
+	}
+}

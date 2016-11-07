@@ -33,14 +33,14 @@ public class Main {
 		    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 		      path = chooser.getSelectedFile().getAbsolutePath();
 		    } else {
-		      System.out.println("Selecionar uma pasta ");
+		      System.out.println("Selecionar uma pasta!");
 		    }
 		}
 		
 		System.out.println(path);
 		
 		IFilaArquivos _filaArquivos = __factory.createFilaArquivos(__factoryArquivo);
-		IProcessadorArquivos _processadorArquivos = __factory.createProcessadorArquivos();
+		IProcessadorArquivos _processadorArquivos = __factory.createProcessadorArquivos(__factoryArquivo);
 		IConsolidadorArquivos _consolidaArquivos = __factory.createConsolidadorArquivos();
 		IImpressao _impressaoTela = __factory.createImpressao(TipoImpressao.tiTela);
 		IImpressao _impressaoTxt = __factory.createImpressao(TipoImpressao.tiTxt);

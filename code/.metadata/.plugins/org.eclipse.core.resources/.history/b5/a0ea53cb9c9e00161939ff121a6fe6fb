@@ -1,0 +1,43 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IParte;
+
+public class ParteJava implements IParte {
+
+	private int tamanho;
+	private String nome, texto;
+	
+	@Override
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	@Override
+	public String getTexto() {
+		return texto;
+	}
+
+	@Override
+	public String getNome() {
+		return nome;
+	}
+
+	@Override
+	public void setTamanho(int Tamanho) {
+		this.tamanho = Tamanho;
+	}
+
+	@Override
+	public void setTexto(String Texto) {
+		this.texto = Texto;
+	}
+
+	@Override
+	public void setNome(String Nome) {
+		this.nome = Nome;
+	}
+
+	public ParteJava(String texto) {
+		this.texto = texto;
+	}
+}

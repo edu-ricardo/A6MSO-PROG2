@@ -1,5 +1,7 @@
 package br.com.tamanho_de_software;
 
+import java.io.IOException;
+
 import br.com.interfaces.IAplicacao;
 import br.com.interfaces.IConsolidadorArquivos;
 import br.com.interfaces.IFilaArquivos;
@@ -11,62 +13,75 @@ public class Aplicacao implements IAplicacao {
 	private IFilaArquivos _filaArquivos;
 	private IProcessadorArquivos _processadorArquivos;
 	private IConsolidadorArquivos _consolidadorArquivos;
-	private IImpressao _impressaoTxt, _impressaoTela;
+	private IImpressao _impressaoTxt, _impressaoTela;	
 	
 	@Override
-	public IProcessadorArquivos getProcessadorDeArquivos() {
-		// TODO Auto-generated method stub
-		return null;
+	public IProcessadorArquivos getProcessadorDeArquivos() {		
+		return _processadorArquivos;
 	}
 
 	@Override
 	public void setProcessadorDeArquivos(IProcessadorArquivos aProcessadorDeArquivos) {
-		// TODO Auto-generated method stub
-
+		_processadorArquivos = aProcessadorDeArquivos;
 	}
 
 	@Override
 	public IConsolidadorArquivos getConsolidadorArquivos() {
-		// TODO Auto-generated method stub
-		return null;
+		return _consolidadorArquivos;
 	}
 
 	@Override
-	public void setConsolidadorArquivos(IConsolidadorArquivos aProcessadorDeArquivos) {
-		// TODO Auto-generated method stub
-
+	public void setConsolidadorArquivos(IConsolidadorArquivos aConsolidadorArquivos) {
+		_consolidadorArquivos = aConsolidadorArquivos;
 	}
 
 	@Override
 	public IImpressao getImpressoraArquivo() {
-		// TODO Auto-generated method stub
-		return null;
+		return _impressaoTxt;
 	}
 
 	@Override
 	public void setImpressoraArquivo(IImpressao aImpressoraArquivo) {
-		// TODO Auto-generated method stub
-
+		_impressaoTxt = aImpressoraArquivo;
 	}
 
 	@Override
 	public IImpressao getImpressoraTela() {
-		// TODO Auto-generated method stub
-		return null;
+		return _impressaoTela;
 	}
 
 	@Override
 	public void setImpressoraTela(IImpressao aImpressoraTela) {
-		// TODO Auto-generated method stub
-
+		_impressaoTela = aImpressoraTela;
 	}
-
+	/*
+	 * (Javadoc)
+	 * @see br.com.interfaces.IAplicacao#Execute(java.lang.String)
+	 * 
+	 * Execução da aplicação
+	 */
 	@Override
 	public void Execute(String path) {
 		// TODO Auto-generated method stub
 		_filaArquivos.carregaArquivos(path);
+		try {
+			_processadorArquivos.processaArquivos(_filaArquivos);
+		} catch (IOException e) {
+			System.out.println("Erro ao processar arquivos: "+e.getMessage());
+		}
+		_consolidadorArquivos.consolidarArquivos(_filaArquivos);
 		
-		System.out.println(_filaArquivos.getCountFiles());
+		try {
+			_impressaoTela.imprimirDados(_filaArquivos);
+		} catch (IOException e) {
+			System.out.println("Erro ao imprimir dados em tela: "+e.getMessage());
+		}
+		_impressaoTxt.setDestino("d:\\dados.txt");
+		try {
+			_impressaoTxt.imprimirDados(_filaArquivos);
+		} catch (IOException e) {
+			System.out.println("Erro ao imprimir dados em arquivo: "+e.getMessage());
+		}
 	}
 	
 	public Aplicacao(IFilaArquivos arquivos, IConsolidadorArquivos consolidador,
@@ -76,7 +91,7 @@ public class Aplicacao implements IAplicacao {
 		_processadorArquivos = processador;
 		_consolidadorArquivos = consolidador;
 		_impressaoTela = tela;
-		_impressaoTxt = impTxt;
+		_impressaoTxt = impTxt;				
 	}
 
 }

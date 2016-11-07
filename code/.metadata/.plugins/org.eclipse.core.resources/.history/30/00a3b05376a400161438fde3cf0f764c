@@ -1,0 +1,82 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IConsolidadorArquivos;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IParte;
+
+public class ConsolidadorArquivosJava implements IConsolidadorArquivos {
+	private int maiorParte, maiorTipo, maiorTamanho;
+	
+	private String completaZeros(String str, int tam){
+		String ret = str;
+		
+		while(ret.length() <= tam){
+			ret += " ";
+		}
+		
+		return ret;
+	}
+	
+	private String construirLinha(String parte, String tipo, String tamanho){
+		return "|"+completaZeros(parte, maiorParte)+"|"+completaZeros(tipo, maiorTipo)+"|"+completaZeros(tamanho, maiorTamanho)+"|\n";
+	}
+	
+	private String header(){
+		String ret;
+		String aux = "";
+		
+		
+		return ret;
+	}
+	
+	@Override
+	public void consolidarArquivos(IFilaArquivos arquivos) {
+		String texto =  " ";		
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();			
+			int totalArq = 0;
+			
+			// Calcula maior
+			maiorParte = maiorTamanho = maiorTipo = 0;			
+			for (IParte parte : arq.getPartes()) {
+				if (parte.getNome().length() > maiorParte)
+					maiorParte = parte.getNome().length(); 
+				
+				if (parte.getTipoParte().toString().length() > maiorTipo)
+					maiorTipo = parte.getTipoParte().toString().length();
+				
+				if (String.valueOf(parte.getTamanho()).length() > maiorTamanho)
+					maiorTamanho = String.valueOf(parte.getTamanho()).length();
+				
+				for (IParte met : parte.getPartes()){
+					if (met.getNome().length() > maiorParte)
+						maiorParte = met.getNome().length(); 
+					
+					if (met.getTipoParte().toString().length() > maiorTipo)
+						maiorTipo = met.getTipoParte().toString().length();
+					
+					if (String.valueOf(met.getTamanho()).length() > maiorTamanho)
+						maiorTamanho = String.valueOf(met.getTamanho()).length();	
+				}
+			}
+			
+			
+			
+			for (IParte parte : arq.getPartes()) {
+				texto += construirLinha(parte.getNome(), parte.getTipoParte().toString(), String.valueOf(parte.getTamanho()));
+				for (IParte met : parte.getPartes()){
+					texto += construirLinha("->"+met.getNome(), met.getTipoParte().toString(), String.valueOf(met.getTamanho()));	
+				}
+				totalArq += parte.getTamanho();
+			}
+			texto += construirLinha("Total Arquivo ", "     ", String.valueOf(totalArq));
+		}
+		
+		arquivos.setImpTexto(texto);
+		
+		System.out.println(arquivos.getImpTexto());
+	}
+
+}

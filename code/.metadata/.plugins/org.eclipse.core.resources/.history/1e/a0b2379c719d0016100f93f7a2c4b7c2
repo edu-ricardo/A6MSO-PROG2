@@ -1,0 +1,9 @@
+package br.com.interfaces;
+
+import java.io.FileNotFoundException;
+import java.util.List;
+
+public interface IArquivo {	
+	public List<IParte> getPartes();
+	public String getText() throws FileNotFoundException;
+}

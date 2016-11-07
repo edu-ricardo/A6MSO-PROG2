@@ -2,5 +2,5 @@ package br.com.interfaces;
 
 public interface IFactoryArquivo {
 	public IArquivo createArquivo(String path);
-	public IParte createParte(IArquivo arquivo);
+	public IParte createParte(String nome, String tTexto, PartType partType);
 }

@@ -1,0 +1,25 @@
+package br.com.tamanho_de_software;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IConsolidadorArquivos;
+import br.com.interfaces.IFilaArquivos;
+
+public class ConsolidadorArquivosJava implements IConsolidadorArquivos {
+
+	private string construirLinha(String parte, tipo, tamanho)
+	
+	@Override
+	public void consolidarArquivos(IFilaArquivos arquivos) {
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();
+			String texto =  "*_______________________________________________________*" +
+							"| Parte 	| 		Tipo | 		Tamanho |"+
+							"*_______________________________________________________*";
+			
+			
+		}
+
+	}
+
+}

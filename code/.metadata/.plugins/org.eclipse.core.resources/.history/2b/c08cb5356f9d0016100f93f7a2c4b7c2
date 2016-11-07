@@ -1,0 +1,27 @@
+package br.com.tamanho_de_software;
+
+import java.util.List;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IParte;
+
+public class ArquivoJava implements IArquivo {
+
+	private String path;
+	private String texto;
+	private List<IParte> _partes;
+	
+	@Override
+	public List<IParte> getPartes() {
+		return _partes;
+	}
+
+	@Override
+	public String getText() {
+		return null;
+	}
+
+	public ArquivoJava(String path) {
+		this.path = path;		
+	}
+}

@@ -1,0 +1,64 @@
+package br.com.tamanho_de_software;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IParte;
+
+public class ArquivoJava implements IArquivo {
+
+	private String path;
+	private int tamanho, qtdeClasses;
+	private List<IParte> _partes;
+	
+	@Override
+	public List<IParte> getPartes() {
+		return _partes;
+	}
+
+	@Override
+	public String getText() throws IOException {
+		BufferedReader bfr = new BufferedReader(new FileReader(path));
+		String linhaAux = "";
+		String texto = "";
+        while (linhaAux != null) {
+            texto += linhaAux + '\n';
+            linhaAux = bfr.readLine();
+        }
+		bfr.close();
+		return texto;
+	}
+
+	public ArquivoJava(String path) {
+		this.path = path;		
+		this._partes = new LinkedList<IParte>();
+	}
+
+	@Override
+	public void setTamanhoTotal(int tam) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getTamanhoTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setQtdeClasses(int qtde) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int GetQtdeClasses() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

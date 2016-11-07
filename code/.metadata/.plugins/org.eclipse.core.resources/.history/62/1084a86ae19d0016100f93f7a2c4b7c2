@@ -1,0 +1,42 @@
+package br.com.tamanho_de_software;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IProcessadorArquivos;
+
+//Patterns 
+//class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
+//(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
+//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
+
+public class ProcessadorArquivosJava implements IProcessadorArquivos {
+
+	public int countClasses(String texto){
+		String pat = "(public|private)\\s+(class|interface|enum)\\s+(\\w+)\\s+((extends\\s+\\w+)|(implements\\s+\\w+( ,\\w+)*))?\\s*\\{";
+		
+		Pattern p = Pattern.compile(pat);
+		Matcher m = p.matcher(texto);		
+		int i = 0;
+		while (m.find()) {
+			i++;
+			System.out.println(texto.charAt(m.end()));;
+		}		
+		return i;	
+	}
+	
+	@Override
+	public void processaArquivos(IFilaArquivos arquivos) throws FileNotFoundException, IOException {
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();
+			arq.setQtdeClasses(countClasses(arq.getText()));
+			
+		}
+	}
+
+}

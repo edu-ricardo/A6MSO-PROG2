@@ -9,24 +9,19 @@ import br.com.interfaces.IArquivo;
 import br.com.interfaces.IFactoryArquivo;
 import br.com.interfaces.IFilaArquivos;
 
-//Patterns 
-//class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
-//(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
-//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
-
 public class FilaArquivosJava implements IFilaArquivos {
 
 	private IFactoryArquivo __factoryArquivo;
 	private List<IArquivo> _listArquivos;
 	private int _index;
+	private String impTexto;
 	
 	@Override
 	public void carregaArquivos(String path) {
-		// TODO Auto-generated method stub
 		File F = new File(path);
 		if(F.isFile() && F.getName().endsWith(".java")){
 			_listArquivos.add(__factoryArquivo.createArquivo(F.getAbsolutePath()));
-		}else{
+		}else if(F.isDirectory()){
 			if (F.listFiles().length > 0)
 				for(File fdirs : F.listFiles()){
 					carregaArquivos(fdirs.getAbsolutePath());
@@ -63,5 +58,15 @@ public class FilaArquivosJava implements IFilaArquivos {
 	@Override
 	public int getCountFiles() {
 		return _listArquivos.size();
+	}
+
+	@Override
+	public void setImpTexto(String texto) {
+		impTexto = texto;
+	}
+
+	@Override
+	public String getImpTexto() {
+		return impTexto;
 	}
 }

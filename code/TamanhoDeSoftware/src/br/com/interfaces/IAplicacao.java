@@ -5,7 +5,7 @@ public interface IAplicacao {
 	public void setProcessadorDeArquivos(IProcessadorArquivos aProcessadorDeArquivos);
 	
 	public IConsolidadorArquivos getConsolidadorArquivos();
-	public void setConsolidadorArquivos(IConsolidadorArquivos aProcessadorDeArquivos);
+	public void setConsolidadorArquivos(IConsolidadorArquivos aConsolidadorArquivos);
 
 	public IImpressao getImpressoraArquivo();
 	public void setImpressoraArquivo(IImpressao aImpressoraArquivo);	

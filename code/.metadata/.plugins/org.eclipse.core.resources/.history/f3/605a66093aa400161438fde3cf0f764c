@@ -1,0 +1,140 @@
+package br.com.tamanho_de_software;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.net.ssl.HandshakeCompletedListener;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFactoryArquivo;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IParte;
+import br.com.interfaces.IProcessadorArquivos;
+
+//Patterns 
+//class = (public|private)\s+(class|interface)\s+(\w+)\s+((extends\s+\w+)|(implements\s+\w+( ,\w+)*))?\s*\{
+//(public|protected|private|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])
+//loc = [ ^\@\.\(]([\w ]*\s?=?\s?[\w\+ \<\>\(]* ?(\;|\)|\:|{)|else)
+
+public class ProcessadorArquivosJava implements IProcessadorArquivos {
+	private static final String patternClass = "(public|private)\\s+(class|interface|enum)\\s+(\\w+)\\s+((extends\\s+\\w+)|(implements\\s+\\w+( ,\\w+)*))?\\s*\\{";
+	private static final String patternMethods = "(public|protected|private|static|\\s) +[\\w\\<\\>\\[\\]]+\\s+(\\w+) *\\([^\\)]*\\) *(\\{?|[^;])";
+	private static final String patternLoc = "[ ^\\@\\.\\(]([\\w ]*\\s?=?\\s?[\\w\\+ \\<\\>\\(]* ?(\\;|\\)|\\:|{)|else)";
+	
+	private  IFactoryArquivo _factArquivo; 
+	
+	private int countClasses(String texto){
+		Pattern p = Pattern.compile(patternClass);
+		Matcher m = p.matcher(texto);		
+		int i = 0;
+		while (m.find()) {
+			i++;
+		}		
+		return i;	
+	}
+
+	private Map<String, String> extractClasses(String texto){
+		Pattern p = Pattern.compile(patternClass);
+		Matcher m = p.matcher(texto);		
+		HashMap<String, String> ret = new HashMap<String, String>();
+		while (m.find()) {
+			int openBracesCount = 0;
+			int endIndex = 0;
+			for (int i = m.end(); i < texto.length(); i++) {
+				if ((texto.charAt(i) == '}') && (openBracesCount == 0)){
+					endIndex = i;
+					break;
+				}else if(texto.charAt(i) == '}'){
+					openBracesCount--;
+				}else if(texto.charAt(i) == '{'){
+					openBracesCount++;
+				}
+			}
+			if (endIndex != 0){				
+				ret.put(m.group(3), texto.substring(m.start(), endIndex + 1));
+			}
+		}
+		
+		return ret;
+	}
+
+	private Map<String, String> extractMethod(String texto){
+		Pattern p = Pattern.compile(patternMethods);
+		Matcher m = p.matcher(texto);
+		HashMap<String, String> ret = new HashMap<String, String>();
+		while (m.find()) {
+			int openBracesCount = 0;
+			int endIndex = 0;
+			for (int i = m.end(); i < texto.length(); i++) {
+				if ((texto.charAt(i) == '}') && (openBracesCount == 0)){
+					endIndex = i;
+					break;
+				}else if(texto.charAt(i) == '}'){
+					openBracesCount--;
+				}else if(texto.charAt(i) == '{'){
+					openBracesCount++;
+				}
+			}
+			if (endIndex != 0){				
+				ret.put(m.group(3), texto.substring(m.start(), endIndex + 1));
+			}
+		}
+		
+		return ret;
+	}
+	
+	private int CalculaLocTexto(String texto){
+		Pattern p = Pattern.compile(patternLoc);
+		Matcher m = p.matcher(texto);
+		int i = 0;
+		while (m.find()) i++;
+		return i;
+	}
+	
+	private void CalculaLoc(List<IParte> partes){
+		for (IParte parte : partes) {
+			parte.setTamanho(CalculaLocTexto(parte.getTexto()));
+			if (parte.getPartes().size() > 0){
+				
+			}
+		}
+	}
+	
+	
+	@Override
+	public void processaArquivos(IFilaArquivos arquivos) throws FileNotFoundException, IOException {
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();
+			arq.setQtdeClasses(countClasses(arq.getText()));
+			Map<String, String> ret = extractClasses(arq.getText());
+			
+			for (Entry<String, String> entry : ret.entrySet()) {
+				arq.getPartes().add(_factArquivo.createParte(entry.getKey(), entry.getValue()));			
+			}
+			
+			// processa partes separando os métodos
+			for (IParte parte : arq.getPartes()) {
+				Map<String, String> methods = extractMethod(parte.getTexto());
+				for (Entry<String, String> entry : methods.entrySet()) {
+					parte.getPartes().add(_factArquivo.createParte(entry.getKey(), entry.getValue()));			
+				}				
+			}
+			
+			CalculaLoc(arq.getPartes());
+		}
+	}
+	
+	public ProcessadorArquivosJava(IFactoryArquivo factArquivo) {
+		this._factArquivo = factArquivo;
+	}
+
+}

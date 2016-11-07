@@ -1,0 +1,25 @@
+package br.com.tamanho_de_software;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import br.com.interfaces.IArquivo;
+import br.com.interfaces.IFilaArquivos;
+import br.com.interfaces.IProcessadorArquivos;
+
+public class ProcessadorArquivosJava implements IProcessadorArquivos {
+
+	public int countClasses(String texto){
+		
+	}
+	
+	@Override
+	public void processaArquivos(IFilaArquivos arquivos) throws FileNotFoundException, IOException {
+		arquivos.first();
+		while (!arquivos.eof()) {
+			IArquivo arq = arquivos.getArquivo();
+			
+		}
+	}
+
+}
